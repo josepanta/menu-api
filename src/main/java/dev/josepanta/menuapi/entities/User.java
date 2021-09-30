@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,16 +23,16 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Menu> menus = new ArrayList<Menu>();
 	
-	@OneToMany(mappedBy = "user")
-	private List<Rol> rols = new ArrayList<Rol>();
+	@ManyToOne
+	@JoinColumn(name = "rol_id", nullable = false )
+	private Rol rol;
 	
-
-	public List<Rol> getRols() {
-		return rols;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setRols(List<Rol> rols) {
-		this.rols = rols;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	public String getEmail() {
